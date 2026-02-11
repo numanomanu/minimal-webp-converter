@@ -2,6 +2,7 @@ import React from 'react';
 import { Download, X, Check, Loader2, AlertCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
 import type { ConvertedImage } from '../hooks/useWebPConverter';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface ImageCardProps {
     image: ConvertedImage;
@@ -9,6 +10,7 @@ interface ImageCardProps {
 }
 
 export const ImageCard: React.FC<ImageCardProps> = ({ image, onRemove }) => {
+    const { t } = useTranslation();
     const { originalFile, previewUrl, status, blob } = image;
 
     const fileSize = (bytes: number) => {
@@ -96,18 +98,18 @@ export const ImageCard: React.FC<ImageCardProps> = ({ image, onRemove }) => {
                         onClick={handleDownload}
                         className={cn(
                             "w-full py-2 px-3 rounded-xl flex items-center justify-center gap-2",
-                            "text-sm font-medium transition-all duration-200",
+                            "text-sm font-medium transition-all duration-200 font-['Outfit']",
                             status === 'completed'
                                 ? "bg-white/20 hover:bg-white/30 text-white shadow-lg"
                                 : "bg-white/5 text-white/30 cursor-not-allowed"
                         )}
                     >
                         <Download size={16} />
-                        Save <span className="hidden sm:inline">WebP</span>
+                        {t('save_button')} <span className="hidden sm:inline">WebP</span>
                     </button>
                     {status === 'completed' && (
-                        <p className="text-[10px] text-center text-white/30 mt-2 sm:hidden">
-                            Result available. Long press image to save.
+                        <p className="text-[10px] text-center text-white/30 mt-2 sm:hidden font-['Outfit']">
+                            {t('result_hint')}
                         </p>
                     )}
                 </div>

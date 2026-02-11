@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Upload, FileImage } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface DropZoneProps {
     onFilesDropped: (files: File[]) => void;
@@ -8,6 +9,7 @@ interface DropZoneProps {
 }
 
 export const DropZone: React.FC<DropZoneProps> = ({ onFilesDropped, className }) => {
+    const { t } = useTranslation();
     const [isDragActive, setIsDragActive] = useState(false);
 
     const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -82,16 +84,16 @@ export const DropZone: React.FC<DropZoneProps> = ({ onFilesDropped, className })
                 </div>
 
                 <div>
-                    <h3 className="text-xl font-semibold text-white/90 mb-2">
-                        {isDragActive ? "Drop images here" : "Drag & Drop images"}
+                    <h3 className="text-xl font-semibold text-white/90 mb-2 font-['Outfit']">
+                        {isDragActive ? t('dropzone_main') : t('dropzone_main')}
                     </h3>
-                    <p className="text-sm text-white/60">
-                        or click to browse
+                    <p className="text-sm text-white/60 font-['Outfit']">
+                        {t('dropzone_sub')}
                     </p>
                 </div>
 
-                <div className="text-xs text-white/40 pt-4">
-                    Supports JPG, PNG, GIF, BMP... {"->"} WebP
+                <div className="text-xs text-white/40 pt-4 font-['Outfit']">
+                    {t('supports_text')}
                 </div>
             </div>
         </div>

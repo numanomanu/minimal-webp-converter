@@ -3,9 +3,17 @@ import { useCallback, useEffect } from 'react';
 import { DropZone } from './components/DropZone';
 import { ImageCard } from './components/ImageCard';
 import { useWebPConverter } from './hooks/useWebPConverter';
+import { useTranslation } from './hooks/useTranslation';
 
 function App() {
   const { convertedImages, convertToWebP, removeImage } = useWebPConverter();
+  const { t, language } = useTranslation();
+
+  // Dynamic Title Update
+  useEffect(() => {
+    document.title = t('title');
+    document.querySelector('meta[name="description"]')?.setAttribute('content', t('meta_description'));
+  }, [language, t]);
 
   const handleFilesDropped = useCallback((newFiles: File[]) => {
     convertToWebP(newFiles);
@@ -27,11 +35,11 @@ function App() {
 
         {/* Header */}
         <header className="mb-8 md:mb-12 text-center space-y-2">
-          <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70 drop-shadow-sm tracking-tight">
-            WebP Converter
+          <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70 drop-shadow-sm tracking-tight font-['Outfit']">
+            {t('title')}
           </h1>
-          <p className="text-white/60 text-lg md:text-xl font-light tracking-wide">
-            Minimal. Fast. Local.
+          <p className="text-white/60 text-lg md:text-xl font-light tracking-wide font-['Outfit']">
+            {t('subtitle')}
           </p>
         </header>
 
@@ -61,8 +69,8 @@ function App() {
 
         </main>
 
-        <footer className="mt-auto pt-12 text-center text-white/30 text-xs md:text-sm">
-          <p>Privacy focused. Your images never leave your device.</p>
+        <footer className="mt-auto pt-12 text-center text-white/30 text-xs md:text-sm font-['Outfit']">
+          <p>{t('privacy_note')}</p>
         </footer>
       </div>
     </div>
