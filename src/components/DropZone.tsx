@@ -48,10 +48,10 @@ export const DropZone: React.FC<DropZoneProps> = ({ onFilesDropped, className })
     return (
         <div
             className={cn(
-                "relative group cursor-pointer transition-all duration-300 ease-in-out",
-                "rounded-3xl border-2 border-dashed border-white/10",
-                "bg-white/5 hover:bg-white/10 hover:border-[#F59E0B]/50",
-                isDragActive ? "border-[#F59E0B] scale-[1.02] bg-[#F59E0B]/10" : "",
+                "relative group cursor-pointer transition-all duration-500 ease-out",
+                "rounded-3xl border border-white/10",
+                "bg-white/5 hover:bg-white/10 hover:border-[#F59E0B]/30 hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.15)]",
+                isDragActive ? "border-[#F59E0B]/50 scale-[1.01] bg-[#F59E0B]/5 shadow-[0_0_40px_-10px_rgba(245,158,11,0.3)]" : "",
                 className
             )}
             onDragOver={handleDragOver}

@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react';
+/* Add font import to head roughly or via CSS, here using a simple style injection or linking in index.html is better, but let's stick to CSS/HTML later. For now, assuming index.html modification */
 import { DropZone } from './components/DropZone';
 import { ImageCard } from './components/ImageCard';
 import { useWebPConverter } from './hooks/useWebPConverter';
@@ -19,8 +20,8 @@ function App() {
     <div className="min-h-screen w-full relative overflow-hidden bg-[#16181D] font-sans text-white">
 
       {/* Background Ambience */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-orange-500/10 blur-[120px] animate-drift pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-yellow-500/10 blur-[120px] animate-drift pointer-events-none" style={{ animationDelay: '-5s' }} />
+      <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-orange-500/10 blur-[100px] animate-float pointer-events-none opacity-60 mix-blend-screen" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-yellow-600/10 blur-[100px] animate-float-delayed pointer-events-none opacity-60 mix-blend-screen" />
 
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-16 flex flex-col items-center min-h-screen">
 
