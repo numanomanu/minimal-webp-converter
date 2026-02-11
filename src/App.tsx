@@ -16,11 +16,11 @@ function App() {
   }, [convertedImages]);
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 font-sans text-white">
+    <div className="min-h-screen w-full relative overflow-hidden bg-[#16181D] font-sans text-white">
 
       {/* Background Ambience */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-400/30 blur-[120px] animate-drift pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-pink-400/30 blur-[120px] animate-drift pointer-events-none" style={{ animationDelay: '-5s' }} />
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-orange-500/10 blur-[120px] animate-drift pointer-events-none" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-yellow-500/10 blur-[120px] animate-drift pointer-events-none" style={{ animationDelay: '-5s' }} />
 
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-16 flex flex-col items-center min-h-screen">
 
