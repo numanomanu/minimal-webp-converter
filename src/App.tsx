@@ -25,7 +25,7 @@ function App() {
   }, [convertedImages]);
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden bg-[#16181D] font-sans text-white">
+    <div className="min-h-screen w-full relative overflow-hidden bg-[#16181D] font-sans text-white select-none touch-callout-none">
 
       {/* Background Ambience */}
       <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-orange-500/10 blur-[100px] animate-float pointer-events-none opacity-60 mix-blend-screen" />

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .touch-callout-none {
+    -webkit-touch-callout: none;
+  }
+}
+
 @layer base {
   :root {
     /* Dark Gray Base */

@@ -54,7 +54,7 @@ export const useWebPConverter = () => {
 
             reader.onload = (e) => {
                 const img = new Image();
-                img.onload = () => {
+                img.onload = async () => {
                     const canvas = document.createElement('canvas');
                     canvas.width = img.width;
                     canvas.height = img.height;
@@ -67,14 +67,40 @@ export const useWebPConverter = () => {
 
                     ctx.drawImage(img, 0, 0);
 
-                    canvas.toBlob((blob) => {
-                        if (!blob) {
-                            reject(new Error('Conversion to WebP failed'));
-                            return;
+                    // Helper to convert with specific quality
+                    const convertToBlob = (quality: number): Promise<Blob | null> => {
+                        return new Promise((res) => {
+                            canvas.toBlob(res, 'image/webp', quality);
+                        });
+                    };
+
+                    // Smart Quality Strategy
+                    // 1. Try fairly high quality (0.8)
+                    let blob = await convertToBlob(0.8);
+
+                    if (!blob) {
+                        reject(new Error('Conversion to WebP failed'));
+                        return;
+                    }
+
+                    // 2. If result is larger than original, try aggressive compression (0.6)
+                    if (blob.size >= file.size) {
+                        const midQualityBlob = await convertToBlob(0.6);
+                        if (midQualityBlob && midQualityBlob.size < blob.size) {
+                            blob = midQualityBlob;
                         }
-                        const url = URL.createObjectURL(blob);
-                        resolve({ url, blob });
-                    }, 'image/webp', 0.85); // Quality 0.85
+                    }
+
+                    // 3. If result is STILL larger/same, try very aggressive compression (0.4)
+                    if (blob.size >= file.size) {
+                        const lowQualityBlob = await convertToBlob(0.4);
+                        if (lowQualityBlob && lowQualityBlob.size < blob.size) {
+                            blob = lowQualityBlob;
+                        }
+                    }
+
+                    const url = URL.createObjectURL(blob);
+                    resolve({ url, blob });
                 };
 
                 img.onerror = reject;

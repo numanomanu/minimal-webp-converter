@@ -51,10 +51,11 @@ export const ImageCard: React.FC<ImageCardProps> = ({ image, onRemove }) => {
                     <img
                         src={previewUrl}
                         alt="Converted"
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 select-none pointer-events-auto"
                         // For mobile "Long Press to Save"
-                        onContextMenu={() => {
+                        onContextMenu={(e) => {
                             // Let default context menu appear for saving
+                            e.stopPropagation();
                         }}
                     />
                 ) : (
